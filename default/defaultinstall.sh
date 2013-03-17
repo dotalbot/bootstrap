@@ -73,6 +73,10 @@ sudo chmod 755 /etc/cron.hourly/ntpdate
 sudo service cron restart
 
 
-# Change of hostname 
+# Change of hostname
+ 
+
+git clone https://github.com/dotalbot/bootstrap.git
+
 
 

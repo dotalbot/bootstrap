@@ -19,6 +19,17 @@ sudo apt-get install git -y
 sudo -E apt-get install memcached python-dev python-pip sqlite3 libcairo2 \
 libcairo2-dev python-cairo pkg-config -y
 
+# load node.js
+wget http://nodejs.org/dist/v0.10.0/node-v0.10.0.tar.gz
+tar zxvf node-v0.10.0.tar.gz 
+cd node-v0.10.0/
+./configure
+make
+sudo make install
+
+
+
+
 unset http_proxy
  
 # Get latest pip

@@ -214,7 +214,7 @@ sudo gem install bundler --no-ri --no-rdoc
 sudo bundle install
 
 
-sudo apt-get install apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libcurl4-openssl-dev apache2-prefork-dev libapr1-dev
+sudo apt-get -y install apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libcurl4-openssl-dev apache2-prefork-dev libapr1-dev
 
 sudo gem install passenger
 sudo passenger-install-apache2-module -a

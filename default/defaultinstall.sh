@@ -29,17 +29,10 @@ sudo mv resolv.conf /etc/
 
 
 #hostname variable
-# to be added
-#sudo hostname newname
-#sudo sh -c ‘hostname > /etc/hostname’
-#sudo perl -p -i -e ‘s/oldname/newname’ /etc/hosts
-
 
 # proxy variable
 export http_proxy=http://192.168.0.35:3128/
-export no_proxy=localhost
-export NO_PROXY=localhost
-
+export no_proxy=localhost,127.0.0.0/8,127.0.1.1
 # set up of the proxy file for quick updates
 echo 'Acquire::http::Proxy "http://192.168.0.35:3142/";' > 00proxy
 

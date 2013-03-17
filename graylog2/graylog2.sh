@@ -254,13 +254,11 @@ sudo mv httpd.conf /etc/apache2
 
 # Change of hostname for graylog2
 
-sudo hostname graylog2dev
-sudo sh -c ‘hostname > /etc/hostname’
-sudo perl -p -i -e ‘s/mongodbserver/graylog2dev’ /etc/hosts
-
+#sudo perl -p -i -e ‘s/mongodbserver/graylog2dev’ /etc/hosts
+sudo hostname graylog3dev
+sudo sed -i -e 's|# mongodbserver|graylog2dev|' /etc/hostname
 
 sudo service apache2 restart
-exit
 echo "###############################################"
 echo "           Installation is complete!           "
 echo "###############################################"

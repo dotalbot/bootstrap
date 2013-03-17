@@ -22,7 +22,8 @@
 
 # Proxy setting
 export http_proxy=http://192.168.0.35:3128/
-no_proxy=localhost,127.0.0.0/8,127.0.1.1
+no_proxy=localhost
+NO_PROXY=localhost
 
 # Variables required 
 RUBY_VER="1.9.2-p318"
@@ -250,6 +251,13 @@ LoadModule passenger_module /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.19
 HTTPD_CONF
 
 sudo mv httpd.conf /etc/apache2
+
+# Change of hostname for graylog2
+
+sudo hostname graylog2dev
+sudo sh -c ‘hostname > /etc/hostname’
+sudo perl -p -i -e ‘s/mongodbserver/graylog2dev’ /etc/hosts
+
 
 sudo service apache2 restart
 exit

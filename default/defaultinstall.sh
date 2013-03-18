@@ -55,6 +55,7 @@ sudo apt-get install build-essential -y
 sudo apt-get install openjdk-7-jdk -y
 
 sudo apt-get install byobu -y
+sudo apt-get install dos2unix -y
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za

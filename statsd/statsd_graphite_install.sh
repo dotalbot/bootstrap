@@ -18,7 +18,7 @@ sudo apt-get install git -y
 # System level dependencies for Graphite
 #sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 python3.1 libpython3.1 python3.1-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect ssh libapache2-mod-python python-setuptools
 
-sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached python-dev python-cairo-dev python-django python-ldap python-memcache python-pysqlite2  python-pip sqlite3 erlang-os-mon erlang-snmp rabbitmq-server
+sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached python-dev python-cairo-dev python-django python-ldap python-memcache python-pysqlite2  python-pip sqlite3 erlang-os-mon erlang-snmp rabbitmq-server -y
 sudo pip install django-tagging
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/whisper-0.9.9.tar.gz
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/carbon-0.9.9.tar.gz
@@ -44,6 +44,9 @@ sudo ./bin/carbon-cache.py start
 
 sleep 15
 cd ~
+
+exit
+
 # load node.js
 wget http://nodejs.org/dist/v0.10.0/node-v0.10.0.tar.gz
 tar zxvf node-v0.10.0.tar.gz 

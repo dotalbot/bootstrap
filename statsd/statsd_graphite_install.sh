@@ -15,17 +15,35 @@ sudo mv 00proxy /etc/apt/apt.conf.d/
 # Install git to get statsd
 sudo apt-get install git -y
  
-# System level dependencies for Graphite
-#sudo apt-get install --assume-yes apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common libapr1 libaprutil1 libaprutil1-dbd-sqlite3 python3.1 libpython3.1 python3.1-minimal libapache2-mod-wsgi libaprutil1-ldap memcached python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 sqlite3 erlang-os-mon erlang-snmp rabbitmq-server bzr expect ssh libapache2-mod-python python-setuptools
+#############################
+# INSTALL SYSTEM DEPENDENCIES
+#############################
 
-sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached python-dev python-cairo-dev python-django python-ldap python-memcache python-pysqlite2  python-pip sqlite3 erlang-os-mon erlang-snmp rabbitmq-server -y
+sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached python-dev python-cairo-dev python-django python-ldap python-memcache python-pysqlite2 python-pip sqlite3 erlang-os-mon erlang-snmp rabbitmq-server -y
+
+unset http_proxy
+
 sudo pip install django-tagging
+
+#################
+# INSTALL WHISPER
+#################
+
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/whisper-0.9.9.tar.gz
+
+################################################
+# INSTALL AND CONFIGURE CARBON (data aggregator)
+################################################
+
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/carbon-0.9.9.tar.gz
 cd /opt/graphite/conf/
 sudo cp carbon.conf.example carbon.conf
 sudo cp storage-schemas.conf.example storage-schemas.conf
 
+
+###########################
+# INSTALL GRAPHITE (webapp)
+###########################
 cd ~
 wget http://launchpad.net/graphite/0.9/0.9.9/+download/graphite-web-0.9.9.tar.gz
 tar -zxvf graphite-web-0.9.9.tar.gz
@@ -33,19 +51,46 @@ mv graphite-web-0.9.9 graphite
 cd graphite
 sudo python check-dependencies.py
 sudo python setup.py install
+
+	
+##################
+# CONFIGURE APACHE
+##################
+
 cd examples
 sudo cp example-graphite-vhost.conf /etc/apache2/sites-available/default
+sudo cp /opt/graphite/conf/graphite.wsgi.example /opt/graphite/conf/graphite.wsgi
 sudo mkdir /etc/httpd
 sudo mkdir /etc/httpd/wsgi
 sudo /etc/init.d/apache2 reload
+
+
+#########################
+# CREATE INITIAL DATABASE 
+#########################
+
 cd /opt/graphite/webapp/graphite/
-cd /opt/graphite/
-sudo ./bin/carbon-cache.py start
+sudo python manage.py syncdb
+sudo chown -R www-data:www-data /opt/graphite/storage/
+sudo /etc/init.d/apache2 restart
+sudo cp local_settings.py.example local_settings.py
+
+################################
+# START CARBON (data aggregator)
+################################
+
+$ cd /opt/graphite/
+$ sudo ./bin/carbon-cache.py start
+
+
+
+
+
 
 sleep 15
 cd ~
 
-exit
+
 
 # load node.js
 wget http://nodejs.org/dist/v0.10.0/node-v0.10.0.tar.gz

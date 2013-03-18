@@ -22,17 +22,18 @@ sudo apt-get install apache2 libapache2-mod-wsgi libapache2-mod-python memcached
 sudo pip install django-tagging
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/whisper-0.9.9.tar.gz
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/carbon-0.9.9.tar.gz
+cd /opt/graphite/conf/
 sudo cp carbon.conf.example carbon.conf
 sudo cp storage-schemas.conf.example storage-schemas.conf
-sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/graphite-web-0.9.9.tar.gz
-cd graphite/examples
+
 cd ~
 wget http://launchpad.net/graphite/0.9/0.9.9/+download/graphite-web-0.9.9.tar.gz
 tar -zxvf graphite-web-0.9.9.tar.gz
+mv graphite-web-0.9.9 graphite
 cd graphite
 sudo python check-dependencies.py
 sudo python setup.py install
-cd examples/
+cd examples
 sudo cp example-graphite-vhost.conf /etc/apache2/sites-available/default
 sudo mkdir /etc/httpd
 sudo mkdir /etc/httpd/wsgi
@@ -40,9 +41,6 @@ sudo /etc/init.d/apache2 reload
 cd /opt/graphite/webapp/graphite/
 cd /opt/graphite/
 sudo ./bin/carbon-cache.py start
-
-
-
 
 sleep 15
 cd ~

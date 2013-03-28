@@ -22,8 +22,8 @@
 
 # Proxy setting
 export http_proxy=http://192.168.0.35:3128/
-no_proxy=localhost
-NO_PROXY=localhost
+export no_proxy=localhost
+export NO_PROXY=localhost
 
 # Variables required 
 RUBY_VER="1.9.2-p318"

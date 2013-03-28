@@ -38,7 +38,21 @@ sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/whisper-0.9.9
 sudo pip install http://launchpad.net/graphite/0.9/0.9.9/+download/carbon-0.9.9.tar.gz
 cd /opt/graphite/conf/
 sudo cp carbon.conf.example carbon.conf
-sudo cp storage-schemas.conf.example storage-schemas.conf
+
+cat >> /tmp/storage-schemas.conf << EOF
+# Schema definitions for Whisper files. Entries are scanned in order,
+# and first match wins. This file is scanned for changes every 60 seconds.
+#
+# [name]
+# pattern = regex
+# retentions = timePerPoint:timeToStore, timePerPoint:timeToStore, ...
+[stats]
+priority = 110
+pattern = ^stats\..*
+retentions = 10s:6h,1m:7d,10m:1y
+EOF
+ 
+sudo cp /tmp/storage-schemas.conf storage-schemas.conf
 
 
 ###########################
@@ -100,6 +114,8 @@ cd node-v0.10.0/
 make
 sudo make install
 cd ~
+
+sudo npm install nodeunit
 
 # statsd
 cd /opt && sudo git clone git://github.com/etsy/statsd.git

@@ -41,7 +41,7 @@ sleep 3
 # Include SysCtl file to address memory shortfall
 sudo cp sysctl.conf /etc
 
-Echo "Server will restart in 10 seconds to take change into effect, halt script if you need it not too!"
+echo "Server will restart in 10 seconds to take change into effect, halt script if you need it not too!"
 
 sleep 12
 

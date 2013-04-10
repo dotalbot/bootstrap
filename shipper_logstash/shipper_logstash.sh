@@ -50,10 +50,12 @@ sudo rm -rf logstash.jar
 sudo wget https://logstash.objects.dreamhost.com/release/logstash-1.1.9-monolithic.jar
 sudo mv logstash-1.1.9-monolithic.jar logstash.jar
 
-# Make the logging directory and config directory exists
+# Make the logging directory and config directory exists + sincedb
 
 sudo mkdir /var/log/logstash/
 sudo mkdir /etc/logstash
+sudo mkdir /var/logstash
+sudo mkdir /var/logstash/sincedb
 
 # Go back to the original location to move the init file: look at pathing
 cd ~

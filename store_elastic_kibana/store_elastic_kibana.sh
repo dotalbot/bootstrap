@@ -36,6 +36,9 @@ wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearc
 sudo dpkg -i elasticsearch-0.20.6.deb
 sudo service elasticsearch start
 
+#Initialize Elasticsearch head
+sudo /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+
 # Install kibana and bind it into Apache
 sudo apt-get install libapache2-mod-passenger apache2 ruby ruby1.8-dev libopenssl-ruby rubygems git -y
 
@@ -46,8 +49,13 @@ cd kibana
 sudo gem install bundle
 sudo bundle install
 
-
-
+# Setup of the default website 
+cd ~
+cd bootstrap
+cd store_elastic_kibana
+sudo rm -rf /etc/apache2/sites-available/default
+sudo cp default /etc/apache2/sites-available 
+sudo service apache2 restart
 
 
 

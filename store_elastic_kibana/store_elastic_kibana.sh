@@ -32,27 +32,24 @@ sudo apt-get update
 sudo apt-get install openjdk-7-jre-headless -y 
 
 # Take note of the version, at the moment is hard coded 
-#wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.6.deb
-#sudo dpkg -i elasticsearch-0.20.6.deb
-#sudo service elasticsearch start
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.20.6.deb
+sudo dpkg -i elasticsearch-0.20.6.deb
+sudo service elasticsearch start
 
-# Make sure you take note of the version
-###wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
-wget http://ftp.ruby-lang.org/pub/ruby/ruby-1.9.3-p392.tar.gz
-tar -xvzf ruby-1.9.3-p392.tar.gz
-cd ruby-1.9.3-p392/
-./configure
-make
-sudo make install
-echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
-sudo gem install bundler
+# Install kibana and bind it into Apache
+sudo apt-get install libapache2-mod-passenger apache2 ruby ruby1.8-dev libopenssl-ruby rubygems git -y
+
+cd /var/www
+
+sudo git clone --branch=kibana-ruby https://github.com/rashidkpc/Kibana.git --depth=1 kibana
+cd kibana
+sudo gem install bundle
+sudo bundle install
 
 
-# Initial install of Kibana
-git clone --branch=kibana-ruby https://github.com/rashidkpc/Kibana.git
-cd Kibana
-gem install bundler
-bundle install
+
+
+
 
 
 

@@ -27,17 +27,17 @@
 #Version of logstash prod to be added
 
 # Cleanup of previous folders
-cd ~
-rm -rf dev
+#cd ~
+#rm -rf dev
 
-mkdir dev
-cd dev
+#mkdir dev
+#cd dev
 
-git clone https://github.com/logstash/logstash.git
+#git clone https://github.com/logstash/logstash.git
 
 # Build of logstash
-cd logstash
-make jar
+#cd logstash
+#make jar
 
 
 sudo mkdir  /opt/logstash
@@ -47,8 +47,8 @@ cd /opt/logstash
 sudo rm -rf logstash.jar
 
 
-sudo wget https://logstash.objects.dreamhost.com/release/logstash-1.1.9-monolithic.jar
-sudo mv logstash-1.1.9-monolithic.jar logstash.jar
+sudo wget https://logstash.objects.dreamhost.com/release/logstash-1.1.10-flatjar.jar
+sudo mv logstash-1.1.10-flatjar.jar logstash.jar
 
 # Make the logging directory and config directory exists + sincedb
 

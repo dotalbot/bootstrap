@@ -36,22 +36,30 @@ cd dev
 git clone https://github.com/logstash/logstash.git
 
 # Build of logstash
-cd logstash
-make jar
+#cd logstash
+#make jar
 
 
-sudo mkdir  /opt/logstash
-cd /opt/logstash
+#sudo mkdir  /opt/logstash
+#cd /opt/logstash
 
 # cleanup of potential existing code: Check code level
-sudo rm -rf logstash.jar
+#sudo rm -rf logstash.jar
 
 
-sudo wget https://logstash.objects.dreamhost.com/release/logstash-1.1.9-monolithic.jar
-sudo mv logstash-1.1.9-monolithic.jar logstash.jar
+sudo wget https://logstash.objects.dreamhost.com/release/logstash-1.1.10-flatjar.jar
+#sudo mv logstash-1.1.9-monolithic.jar logstash.jar
 
 # Make the logging directory and config directory exists + sincedb
 
+sudo apt-get install ruby1.9.1 ruby1.9.1-dev \
+  rubygems1.9.1 irb1.9.1 ri1.9.1 rdoc1.9.1 \
+  build-essential libopenssl-ruby1.9.1 libssl-dev zlib1g-dev -y 
+
+sudo gem install fpm
+
+
+exit
 sudo mkdir /var/log/logstash/
 sudo mkdir /etc/logstash
 sudo mkdir /var/logstash

@@ -26,6 +26,9 @@ sudo mv resolv.conf /etc
 sudo rm resolv.conf
 sudo chattr +i /etc/resolv.conf
 
+sudo sed -i -e 's|http://us.|http://za.|' /etc/apt/sources.list
+
+
 # proxy variable
 
 # set up of the proxy file for quick updates
@@ -52,7 +55,7 @@ sudo apt-get install openjdk-7-jdk -y
 
 # Install of basic GUI interface + vnc
 sudo apt-get install xubuntu-desktop -y
-sudo apt-get install x11nvc
+sudo apt-get install x11vnc -y
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za
@@ -79,6 +82,8 @@ cd bootstrap
 cd default
 sudo cp -rf x11vnc.conf /etc/init 
 
+# Setup of password for vnc
+sudo x11vnc -storepasswd /etc/x11vnc.pass
 
 # Make the user aware that you are going to reboot in 10 seconds unless they halt the script
 sudo shutdown -r +2 "Rebooting in two minutes unless you stop it"

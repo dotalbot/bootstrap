@@ -59,9 +59,9 @@ sudo apt-get install x11vnc -y
 # Making sure openssh-server is install
 sudo apt-get install openssh-server -y
 
-# Geany for development work
+# Geany for development work + firefox
 sudo apt-get install geany -y
-
+sudo apt-get install firefox -y
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za

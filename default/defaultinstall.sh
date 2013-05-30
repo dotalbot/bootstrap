@@ -17,22 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-# Test via bug system
+#
 #=====================================================================
 
-# Clean up nameserver
-cd ~
-cat <<EOF >resolv.conf
-nameserver 192.168.0.17
-EOF
-sudo mv resolv.conf /etc/ 
-
-
-#hostname variable
+#Setup DNS perm
+echo 'nameserver 192.168.0.17' > resolv.conf
+sudo mv resolv.conf /etc
+sudo rm resolv.conf
+sudo chattr +i /etc/resolv.conf
 
 # proxy variable
-export http_proxy=http://192.168.0.35:3128/
-export no_proxy=localhost,127.0.0.0/8,127.0.1.1
+
 # set up of the proxy file for quick updates
 echo 'Acquire::http::Proxy "http://192.168.0.35:3142/";' > 00proxy
 
@@ -54,8 +49,10 @@ sudo apt-get install unzip -y
 sudo apt-get install build-essential -y
 sudo apt-get install openjdk-7-jdk -y
 
-sudo apt-get install byobu -y
-sudo apt-get install dos2unix -y
+
+# Install of basic GUI interface + vnc
+sudo apt-get install xubuntu-desktop -y
+sudo apt-get install x11nvc
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za
@@ -73,11 +70,20 @@ sudo chmod 755 /etc/cron.hourly/ntpdate
 # To make sure tha cron runs it.
 sudo service cron restart
 
-
-# Change of hostname
- 
-
+# Pull down bootstrap dir
+rm -rf bootstrap
 git clone https://github.com/dotalbot/bootstrap.git
+
+# Install of the x11vnc config file for lightdm vnc launch
+cd bootstrap
+cd default
+sudo cp -rf x11vnc.conf /etc/init 
+
+
+# Make the user aware that you are going to reboot in 10 seconds unless they halt the script
+sudo shutdown -r +2 "Rebooting in two minutes unless you stop it"
+
+
 
 
 

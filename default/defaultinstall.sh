@@ -52,10 +52,16 @@ sudo apt-get install unzip -y
 sudo apt-get install build-essential -y
 sudo apt-get install openjdk-7-jdk -y
 
-
 # Install of basic GUI interface + vnc
-sudo apt-get install xubuntu-desktop -y
+sudo apt-get install --no-install-recommends xubuntu-desktop -y
 sudo apt-get install x11vnc -y
+
+# Making sure openssh-server is install
+sudo apt-get install openssh-server -y
+
+# Geany for development work
+sudo apt-get install geany -y
+
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za

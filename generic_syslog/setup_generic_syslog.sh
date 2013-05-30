@@ -20,6 +20,7 @@ sudo apt-get install syslog-ng -y
 
 sudo cp -rf syslog-ng.conf /etc/syslog-ng/
 
+sudo service syslog-ng reload
 
 #sudo apt-get install syslog-ng-core -y
 #sudo apt-get install syslog-ng-mod-sql -y

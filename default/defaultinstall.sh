@@ -64,6 +64,12 @@ sudo apt-get install openssh-server -y
 sudo apt-get install geany -y
 sudo apt-get install firefox -y
 
+# Install Net-beans
+sudo apt-get install netbeans -y
+sudo apt-get update
+sudo apt-get install netbeans -y
+
+
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za
 

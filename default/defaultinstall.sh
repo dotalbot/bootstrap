@@ -64,11 +64,19 @@ sudo apt-get install openssh-server -y
 sudo apt-get install geany -y
 sudo apt-get install firefox -y
 
-# Install Net-beans
+# Include additional development type tools
+sudo apt-get install htop -y
+sudo apt-get install iotop -y
+sudo apt-get install shutter -y
+sudo apt-get install sysstat -y
+sudo apt-get install latencytop -y
+sudo apt-get install flashplugin-nonfree -y
+
+# Install Net-beans + emma (GUI sql client)
 sudo apt-get install netbeans -y
 sudo apt-get update
 sudo apt-get install netbeans -y
-
+sudo apt-get install emma -y
 
 # Setup the host to get NTP updates automatically and get an update
 sudo ntpdate ntp.is.co.za

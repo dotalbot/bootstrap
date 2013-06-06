@@ -51,6 +51,7 @@ sudo apt-get install openjdk-7-jdk -y
 sudo apt-get install unzip -y
 sudo apt-get install build-essential -y
 sudo apt-get install openjdk-7-jdk -y
+sudo apt-get install python-dev -y
 
 # Install of basic GUI interface + vnc
 #sudo apt-get install --no-install-recommends xubuntu-desktop -y
